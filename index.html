@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="quizApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object-Oriented Architecture Quiz</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app/app.module.js"></script>
+    <script src="app/app.controller.js"></script>
+    <script src="app/app.service.js"></script>
+</head>
+<body ng-controller="QuizController as quizCtrl">
+
+    <div class="quiz-container">
+        <h1>Object-Oriented Architecture Quiz</h1>
+
+        <div ng-repeat="question in quizCtrl.questions">
+            <h3>{{question.text}}</h3>
+            <ul>
+                <li ng-repeat="option in question.options">
+                    <label>
+                        <input type="radio" ng-model="question.selectedOption" ng-value="option">
+                        {{option}}
+                    </label>
+                </li>
+            </ul>
+        </div>
+
+        <button ng-click="quizCtrl.submitQuiz()">Submit Quiz</button>
+
+        <div class="result" ng-if="quizCtrl.showResult">
+            <h2>You scored: {{ quizCtrl.score }} out of {{ quizCtrl.questions.length }}</h2>
+        </div>
+    </div>
+
+</body>
+</html>
